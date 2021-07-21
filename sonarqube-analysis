@@ -16,5 +16,11 @@ pipeline {
                 sh 'go get -u golang.org/x/lint/golint'
             }
         }
-   }
+        stage('Build') {
+            steps {
+                sh "echo 'Compiling and building'"
+                sh 'go build'
+            }
+        }
+    }
 }
