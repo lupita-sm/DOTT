@@ -7,7 +7,7 @@ pipeline {
         GO114MODULE = 'auto'
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
-        mvnHome =  tool name: 'maven-3', type: 'maven'
+       // mvnHome =  tool name: 'maven-3', type: 'maven'
     }
     stages {   
         stage('Cone repository'){
