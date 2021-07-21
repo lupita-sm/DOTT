@@ -7,6 +7,7 @@ pipeline {
         GO114MODULE = 'auto'
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+        mvnHome =  tool name: 'maven-3', type: 'maven'
     }
     stages {   
         stage('Cone repository'){
@@ -29,8 +30,6 @@ pipeline {
             }
         }
         stage('SonarQube Analysis'){
-            // Get maven home path
-            def mvnHome =  tool name: 'maven-3', type: 'maven'
             withSonarQubeEnv('Sonar'){
                 sh '${mvnHome}/bin/mvn sonar:sonar'
             }
