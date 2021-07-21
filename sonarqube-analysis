@@ -10,7 +10,7 @@ pipeline {
        // mvnHome =  tool name: 'maven-3', type: 'maven'
     }
     stages {   
-        stage('Cone repository'){
+        stage('Clone repository'){
             steps{
                 sh 'rm -r DOTT-1'
                 sh 'git clone https://github.com/Janeth16mtz/DOTT-1'
