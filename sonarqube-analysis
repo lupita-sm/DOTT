@@ -25,6 +25,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "echo 'Compiling and building'"
+                sh 'go mod init'
                 sh 'go build'
             }
         }
