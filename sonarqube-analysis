@@ -12,7 +12,6 @@ pipeline {
         stage('Cone repository'){
             steps{
                 sh 'cd /'
-                sh 'rm -r DOTT-1'
                 sh 'git clone https://github.com/Janeth16mtz/DOTT-1'
             }
         }
