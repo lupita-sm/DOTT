@@ -6,7 +6,7 @@ pipeline {
     environment {
         GO114MODULE = 'on'
         CGO_ENABLED = 0 
-        GOPATH = "/var/lib/jenkins/jobs/DevOps-Project/"
+        GOPATH = "${env.WORKSPACE}/go"
     }
     stages {        
         stage('Pre Test') {
