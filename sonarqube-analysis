@@ -10,9 +10,11 @@ pipeline {
     }
     stages {   
         stage('Cone repository'){
-            sh 'cd /'
-            sh 'sudo rm -r DOTT-1'
-            sh 'sudo git clone https://github.com/Janeth16mtz/DOTT-1'
+            steps{
+                sh 'cd /'
+                sh 'sudo rm -r DOTT-1'
+                sh 'sudo git clone https://github.com/Janeth16mtz/DOTT-1'
+            }
         }
         stage('Pre Test') {
             steps {
