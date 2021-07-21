@@ -1,6 +1,6 @@
 node{
   stage('SCM Checkout'){
-    git 'https://github.com/Janeth16mtz/DOTT-1.git/'
+    git 'https://github.com/Janeth16mtz/DOTT-1'
   }
   stage('Compile-Package'){
    //Get maven home path
