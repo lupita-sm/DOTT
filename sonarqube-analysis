@@ -25,6 +25,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh "echo 'Compiling and building'"
+                sh 'cd DOTT-1/cidr_convert_api/go'
                 sh 'go build'
             }
         }
