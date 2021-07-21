@@ -24,9 +24,19 @@ pipeline {
         }
         stage('Build') {
             steps {
-                GOPATH = "/var/lib/jenkins/workspace/DevOps-Project/DOTT-1/cidr_convert_api/go"
                 sh "echo 'Compiling and building'"
+                GOPATH = "/var/lib/jenkins/workspace/DevOps-Project/DOTT-1/cidr_convert_api/go"
                 sh 'go build'
+            }
+        }
+        stage('Compile-Package'){
+            def mvnHome = took name: 'Maven-3', type:'maven'
+            sh "${mvnHome}/bin/mvn package"
+        }
+        stage('SonarQube Analysis'){
+            def mvnHome = tool name: 'Maven-3', type: 'maven'
+            withSonarQubeEnv('Sonar'){
+                sh "${mvnHome}/bin/mvn sonar:sonar"
             }
         }
     }
