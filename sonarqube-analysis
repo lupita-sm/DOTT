@@ -30,7 +30,7 @@ pipeline {
             }
         }
         stage('SonarQube Analysis'){
-            withSonarQubeEnv('Sonar'){
+            withSonarQubeEnv('sonar_scaner'){
                 sh '${mvnHome}/bin/mvn sonar:sonar'
             }
         }
