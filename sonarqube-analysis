@@ -30,7 +30,9 @@ pipeline {
             }
         }
         stage('SonarQube Analysis'){
-            sh 'echo "analysis stage"'
+            steps{
+                sh 'echo "analysis stage"'
+            }
         }
     }
 }
