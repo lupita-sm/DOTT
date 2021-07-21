@@ -23,10 +23,8 @@ pipeline {
             }
         }
         stage('Build') {
-            envirnment{
-                GOPATH = "/var/lib/jenkins/workspace/DevOps-Project/DOTT-1/cidr_convert_api/go"
-            }
             steps {
+                GOPATH = "/var/lib/jenkins/workspace/DevOps-Project/DOTT-1/cidr_convert_api/go"
                 sh "echo 'Compiling and building'"
                 sh 'go build'
             }
