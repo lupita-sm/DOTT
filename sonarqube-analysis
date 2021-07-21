@@ -6,9 +6,14 @@ pipeline {
     environment {
         GO114MODULE = 'on'
         CGO_ENABLED = 0 
-        GOPATH = "${env.WORKSPACE}/go"
+        GOPATH = "/DOTT-1/cidr_convert_api/go"
     }
-    stages {        
+    stages {   
+        stage('Cone repository'){
+            sh 'cd /'
+            sh 'sudo rm -r DOTT-1'
+            sh 'sudo git clone https://github.com/Janeth16mtz/DOTT-1'
+        }
         stage('Pre Test') {
             steps {
                 sh "echo 'Installing dependencies'"
