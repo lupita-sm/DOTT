@@ -9,38 +9,25 @@ pipeline {
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
        // mvnHome =  tool name: 'maven-3', type: 'maven'
     }
-    stages {   
-        stage('Clone repository'){
-            steps{
-                sh 'rm -r DOTT-1'
-                sh 'git clone https://github.com/Janeth16mtz/DOTT-1'
-            }
-        }
-        stage('Pre Test') {
-            steps {
-                sh "echo 'Installing dependencies'"
-                sh 'go version'
-                sh 'go get -u github.com/Janeth16mtz/DOTT-1/cidr_convert_api/go'
-            }
-        }
+    stages {
         stage('SonarQube Analysis'){
-            steps{
-                sh 'echo "analysis stage"'
-            }
-        }
-        stage('Build') {
-            steps {
-                sh "echo 'Compiling and building'"
-                sh 'go build'
-            }
-        }
-        stage('Unit test'){
             steps{
                 shh 'sonar-scanner \
                   -Dsonar.projectKey=key-project \
                   -Dsonar.sources=. \
                   -Dsonar.host.url=http://ec2-18-217-71-108.us-east-2.compute.amazonaws.com:9000 \
                   -Dsonar.login=f402116737575a3cdf48c74622a3873a9d1c0e1c'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'echo "Compiling and building"'
+                sh 'go build'
+            }
+        }
+        stage('Unit test'){
+            steps{
+                sh 'echo "Unit test"'
             }
         }
     }
