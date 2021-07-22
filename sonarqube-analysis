@@ -1,27 +1,11 @@
-node{
-    stage('SCM'){
-            git 'https://github.com/Janeth16mtz/DOTT-1.git'
-        }
-        stage('SnarQube analysis'){
-            steps{
-                script{
-                    def scannerHome = tool 'sonar_scaner';
-                    withSonarQubeEnv('sonar') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.login=f402116737575a3cdf48c74622a3873a9d1c0e1c"
-                    }
-                }
-            }
-        }
-        stage('Build') {
-            steps {
-                sh 'echo "Compiling and building"'
-                sh 'go build'
-            }
-        }
-        stage('Unit test'){
-            steps{
-                sh 'echo "Unit test"'
-            }
-        }
+node {
+  stage('SCM') {
+    git 'https://github.com/Janeth16mtz/DOTT-1.git'
+  }
+  stage('SonarQube Analysis') {
+    def scannerHome = tool 'sonar_scaner';
+    withSonarQubeEnv('sonar') { // If you have configured more than one global server connection, you can specify its name
+      sh "${scannerHome}/bin/sonar-scanner"
     }
-} 
+  }
+}
