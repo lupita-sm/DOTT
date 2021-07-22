@@ -22,7 +22,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'echo "Compiling and building"'
-                sh 'go build'
             }
         }
         stage('Unit test'){
