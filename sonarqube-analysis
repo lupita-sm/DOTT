@@ -10,7 +10,7 @@ pipeline {
     }
     stages {
         stage('SCM') {
-            git https://github.com/Janeth16mtz/DOTT-1.git
+            git 'https://github.com/Janeth16mtz/DOTT-1.git'
           }
         stage('SnarQube analysis'){
             steps{
