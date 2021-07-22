@@ -26,7 +26,7 @@ pipeline {
            stage('Sonarqube') {
 steps {
 script {
-       def scannerHome = tool "SonarQubeScannerr";
+       def scannerHome = tool "SonarQubeScanner";
         withSonarQubeEnv('My SonarQube Server') {
             sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/Sonar_Scanner \
            -D sonar.login=admin \
