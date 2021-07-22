@@ -2,7 +2,6 @@ pipeline {
     agent any
     tools {
         go 'Go_version'
-        scannerHome 'sonar_scaner'
     }
     environment {
         GO114MODULE = 'auto'
@@ -13,6 +12,7 @@ pipeline {
         stage('SnarQube analysis'){
             steps{
                 script{
+                    def scannerHome = tool 'sonar_scaner';
                     withSonarQubeEnv('My SonarQube Server') {
                         sh "sonar-scanner -Dsonar.login=f402116737575a3cdf48c74622a3873a9d1c0e1c"
                     }
