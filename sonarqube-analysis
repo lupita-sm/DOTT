@@ -9,7 +9,6 @@ pipeline {
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
     stages {
-    node{
         stage('SnarQube analysis'){
             steps{
                 script{
@@ -31,6 +30,5 @@ pipeline {
                 sh 'echo "Unit test"'
             }
         }
-    }
     }
 } 
