@@ -6,7 +6,7 @@ pipeline {
     environment {
         GO114MODULE = 'auto'
         CGO_ENABLED = 0 
-        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/cidr_convert_api/go"
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}"
     }
     stages {
         stage('SnarQube analysis'){
@@ -32,7 +32,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Compiling and building'
-                sh 'go build'
+                sh 'go build cidr_convert_api/go'
             }
         }
         stage('Unit test'){
