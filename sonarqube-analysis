@@ -7,7 +7,6 @@ pipeline {
         GO114MODULE = 'auto'
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
-        git 'https://github.com/Janeth16mtz/DOTT-1.git'
     }
     stages {
         stage('SnarQube analysis'){
