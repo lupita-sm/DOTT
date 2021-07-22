@@ -4,7 +4,7 @@ pipeline {
         go 'Go_version'
     }
     environment {
-        GO114MODULE = 'auto'
+        GO114MODULE = 'on'
         CGO_ENABLED = 0 
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}"
     }
@@ -31,9 +31,14 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Compiling and building'
-                sh 'cd cidr_convert_api/go'
-                sh 'go build'
+                script{
+                    def root = tool type: 'go', name: 'Go_version'
+
+                    // Export environment variables pointing to the directory where Go was installed
+                    withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
+                        sh 'go version'
+                    }
+                }
             }
         }
         stage('Unit test'){
