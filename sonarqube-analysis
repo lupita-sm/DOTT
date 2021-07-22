@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Unit test'){
             steps{
-                sh 'echo "Unit test"'
+                sh 'go test -cover ./...'
             }
         }
     }
