@@ -36,7 +36,11 @@ pipeline {
         }
         stage('Unit test'){
             steps{
-                shh 'sonar-scanner -Dsonar.projectKey=Project -Dsonar.sources=. -Dsonar.host.url=http://ec2-18-217-71-108.us-east-2.compute.amazonaws.com:9000 -Dsonar.login=278c32cb34f45c111eba5953f26e76b37ce25c7e'
+                shh 'sonar-scanner \
+                  -Dsonar.projectKey=key-project \
+                  -Dsonar.sources=. \
+                  -Dsonar.host.url=http://ec2-18-217-71-108.us-east-2.compute.amazonaws.com:9000 \
+                  -Dsonar.login=f402116737575a3cdf48c74622a3873a9d1c0e1c'
             }
         }
     }
