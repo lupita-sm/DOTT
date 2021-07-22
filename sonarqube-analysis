@@ -23,15 +23,15 @@ pipeline {
                 sh 'go get -u github.com/Janeth16mtz/DOTT-1/cidr_convert_api/go'
             }
         }
+        stage('SonarQube Analysis'){
+            steps{
+                sh 'echo "analysis stage"'
+            }
+        }
         stage('Build') {
             steps {
                 sh "echo 'Compiling and building'"
                 sh 'go build'
-            }
-        }
-        stage('SonarQube Analysis'){
-            steps{
-                sh 'echo "analysis stage"'
             }
         }
         stage('Unit test'){
