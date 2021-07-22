@@ -1,6 +1,5 @@
 node{
-    stages {
-        stage('SCM'){
+    stage('SCM'){
             git 'https://github.com/Janeth16mtz/DOTT-1.git'
         }
         stage('SnarQube analysis'){
