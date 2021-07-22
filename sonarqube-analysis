@@ -32,7 +32,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Compiling and building'
-                sh 'go build cidr_convert_api/go'
+                sh 'ch cidr_convert_api/go'
+                sh 'go build'
             }
         }
         stage('Unit test'){
