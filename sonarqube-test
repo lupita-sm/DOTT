@@ -19,7 +19,7 @@ pipeline {
 						-Dsonar.projectKey=Project \
 						-Dsonar.sources=cidr_convert_api/go/ \
 						-Dsonar.host.url=http://3.137.198.200:9000 \
-						-Dsonar.login=334290ef3ee3257e83da7f43c7aa9e0e18b4c04b "
+						 "
 
 
 
