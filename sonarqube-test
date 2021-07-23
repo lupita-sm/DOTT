@@ -1,18 +1,11 @@
 pipeline {
-    agent any
-    tools {
+    
 	def root = tool type: 'go', name: 'Go 1.5'
 
     // Export environment variables pointing to the directory where Go was installed
     withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
         sh 'go version'	
 	
-    }
-    environment {
-        GO114MODULE = 'on'
-        CGO_ENABLED = 0 
-        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
-    }
     stages {
         stage('SnarQube analysis'){
             steps{
