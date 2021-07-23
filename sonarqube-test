@@ -14,7 +14,7 @@ pipeline {
                 script{
 					//Define tools for SonarScanner test
                     def scannerHome = tool 'SonarQubeScanner';
-                    withSonarQubeEnv('MySonarQube') {
+                    withSonarQubeEnv('MySonarQubeServer') {
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project \
 						-Dsonar.projectKey=Project \
 						-Dsonar.sources=cidr_convert_api/go/ \
