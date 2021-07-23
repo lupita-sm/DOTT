@@ -28,7 +28,7 @@ steps {
 script {
        def scannerHome = tool "SonarQubeScanner";
         withSonarQubeEnv('MySonarQubeServer') {
-            sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner \
+            sudo sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner \
            -D sonar.login=admin \
            -D sonar.password=admin \
            -D sonar.projectBaseDir=/var/lib/jenkins/workspace/neew \
