@@ -1,0 +1,58 @@
+pipeline {
+    agent any
+    tools {
+        go 'Go_version'
+    }
+    environment {
+        GO114MODULE = 'on'
+        CGO_ENABLED = 0 
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+    }
+    stages {
+        stage('SnarQube analysis'){
+            steps{
+                script{
+					//Define tools for SonarScanner test
+                    def scannerHome = tool 'SonarQubeScanner';
+                    withSonarQubeEnv('MySonarQube') {
+                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project \
+						-Dsonar.projectKey=Project \
+						-Dsonar.sources=cidr_convert_api/go/ \
+						-Dsonar.host.url=http://3.137.198.200:9000 \
+						-Dsonar.login=334290ef3ee3257e83da7f43c7aa9e0e18b4c04b 
+
+
+
+
+	
+                    }
+                }
+            }
+        }
+        stage('Pre-Test Stage') {
+            steps {
+                echo 'Installing dependencies'
+                sh 'go version'
+                sh 'go get -v -u github.com/gorilla/mux'
+            }
+        }
+        stage('Build Stage') {
+            steps {
+                script{
+                    dir("/var/lib/jenkins/workspace/Project/cidr_convert_api/go"){
+                        sh 'go build'
+                    }
+                }
+            }
+        }
+        stage('Unit test'){
+            steps{
+                script{
+                    dir("/var/lib/jenkins/workspace/Project/cidr_convert_api/go"){
+                        sh "go test -v"
+                    }
+                }
+            } 
+        }
+    }
+} 
