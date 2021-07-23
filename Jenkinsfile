@@ -11,8 +11,8 @@ pipeline {
   								-Dsonar.projectKey=my-app1 \
   								-Dsonar.sources=. \
   								-Dsonar.host.url=http://52.15.129.141:9000 \
-  								-Dsonar.login=d95f7c9d6fac6bb6b797128d50fc2d5bae7a4c3c
-								"
+  								-Dsonar.login=d95f7c9d6fac6bb6b797128d50fc2d5bae7a4c3c"
+								
 								}
 								}
 							}	
