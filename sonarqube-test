@@ -9,13 +9,13 @@ pipeline {
         GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
     }
     stages {
-        stage('SnarQube analysis'){
+        stage('Snar test'){
             steps{
                 script{
 					//Define tools for SonarScanner test
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('MySonarQubeServer') {
-                        sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project \
+                        sh "${scannerHome}/SonarQubeScanner/bin/sonar-scanner -Dsonar.projectKey=Project \
 						-Dsonar.projectKey=Project \
 						-Dsonar.sources=cidr_convert_api/go/ \
 						-Dsonar.host.url=http://3.137.198.200:9000 \
@@ -31,12 +31,12 @@ pipeline {
         }
         stage('Pre-Test Stage') {
             steps {
-                echo 'Installing dependencies'
+                echo 'Installing'
                 sh 'go version'
-                sh 'go get -v -u github.com/gorilla/mux'
+                '
             }
         }
-        stage('Build Stage') {
+        stage('Building ') {
             steps {
                 script{
                     dir("/var/lib/jenkins/workspace/Project/cidr_convert_api/go"){
