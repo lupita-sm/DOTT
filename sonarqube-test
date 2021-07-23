@@ -1,11 +1,13 @@
 pipeline {
-    
-	def root = tool type: 'go', name: 'Go 1.5'
-
-    // Export environment variables pointing to the directory where Go was installed
-    withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
-        sh 'go version'	
-	
+    agent any
+    tools {
+        go 'Go 1.5'
+    }
+    environment {
+        GO114MODULE = 'on'
+        CGO_ENABLED = 0 
+        GOPATH = "${JENKINS_HOME}/jobs/${JOB_NAME}/builds/${BUILD_ID}"
+    }
     stages {
         stage('SnarQube analysis'){
             steps{
@@ -17,8 +19,11 @@ pipeline {
 						-Dsonar.projectKey=Project \
 						-Dsonar.sources=cidr_convert_api/go/ \
 						-Dsonar.host.url=http://3.137.198.200:9000 \
-						-Dsonar.login=334290ef3ee3257e83da7f43c7aa9e0e18b4c04b"
-						
+						-Dsonar.login=334290ef3ee3257e83da7f43c7aa9e0e18b4c04b "
+
+
+
+
 	
                     }
                 }
@@ -51,4 +56,3 @@ pipeline {
         }
     }
 } 
-}
