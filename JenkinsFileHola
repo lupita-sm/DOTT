@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+	def root = tool type: 'go', name: 'Go 1.5'
+        stages {
+            stage('Build') {
+                steps {
+                    sh 'echo "Step One build something else" '
+                }
+            }
+            stage('SonarQube') {
+                steps {
+                    sh 'echo "Step Two Sonar x" '
+                }
+            } 
+
+            stage('Testing') {
+                steps {
+                    sh 'echo "Step Three ddd" '
+                }
+            }
+
+            stage('Deploy') {
+                steps {
+                    sh 'echo "Step Three" '
+                }
+            }
+           stage('Sonarqube') {
+steps {
+	
+script {
+	def scannerHome = tool 'SonarQubeScanner';
+	withSonarQubeEnv('MySonarQubeServer') {
+		sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project \
+		-Dsonar.projectKey=Project \
+		-Dsonar.sources=cidr_convert_api/go/ \
+		-Dsonar.host.url=http://3.137.198.200:9000 \
+		-Dsonar.login=334290ef3ee3257e83da7f43c7aa9e0e18b4c04b "
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+}             
+}
+}
