@@ -5,28 +5,20 @@ pipeline {
 						steps {
 							sh ' echo "Step One" '
 							script {
-								env.EXECUTE = "True"
+								def scannerhome= tool 'SonarQubeScanner';
+								withSonarQubeEnv('MySonarQubeServer'){
+								sh "${scannerhome}/bin/sonar-scanner \
+  								-Dsonar.projectKey=my-app1 \
+  								-Dsonar.sources=. \
+  								-Dsonar.host.url=http://52.15.129.141:9000 \
+  								-Dsonar.login=d95f7c9d6fac6bb6b797128d50fc2d5bae7a4c3c
+								"
 								}
-							echo "${EXECUTE}"
+								}
 							}	
 				     }		
-			stage('Two') {
-						when {
-							environment name: 'EXECUTE', value: "True"
-						     }
-						steps { 
-							sh ' echo "Step Two" '
-							sh ' echo "Updating Second Stage" '	
-						      }
-				}
-			stage('Three') {
-						when {
-							environment name: 'EXECUTE', value: "False"
-						     }
-						steps {
-							sh ' echo "Step Three" '
-						      }
-				       }
+		
+				       
 			}
-}
+
 
