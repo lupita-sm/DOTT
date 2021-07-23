@@ -12,7 +12,7 @@ pipeline {
         stage('SnarQube analysis'){
             steps{
                 script{
-					//Define tools for SonarScanner test
+					//Define tools for SonarScanner test 
                     def scannerHome = tool 'SonarQubeScanner';
                     withSonarQubeEnv('MySonarQubeServer') {
                         sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=Project \
