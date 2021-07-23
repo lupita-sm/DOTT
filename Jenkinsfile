@@ -28,13 +28,11 @@ steps {
 script {
        def scannerHome = tool "SonarQubeScanner";
         withSonarQubeEnv('MySonarQubeServer') {
-            sh """/var/lib/jenkins/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner \
-           -D sonar.login=admin \
-           -D sonar.password=admin \
-           -D sonar.projectBaseDir=/var/lib/jenkins/workspace/hola2/cidr_convert_api
-           -D sonar.projectKey=my-app1 \
-	   -D sonar.sources=cidr_convert_api/go \
-	   -D sonar.host.url=http://52.15.129.141:9000/"""
+		sh """${scannerhome}/bin/SonarQubeScanner\
+  -Dsonar.projectKey=DOTT \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://52.15.129.141:9000 \
+  -Dsonar.login=d95f7c9d6fac6bb6b797128d50fc2d5bae7a4c3c
         }
         timeout(time: 10, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
