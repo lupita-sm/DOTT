@@ -34,7 +34,7 @@ script {
            -D sonar.projectBaseDir=/var/lib/jenkins/workspace/neew \
            -D sonar.projectKey=my-app1 \
 	   -D sonar.sources=cidr_convert_api/go \
-	   -D sonar.host.url=http://52.15.129.141:9000/""",sudo: true
+	   -D sonar.host.url=http://52.15.129.141:9000/"""
         }
         timeout(time: 10, unit: 'MINUTES') {
             waitForQualityGate abortPipeline: true
