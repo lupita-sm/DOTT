@@ -1,7 +1,12 @@
 pipeline {
     agent any
     tools {
-        go 'Go_version'
+	def root = tool type: 'go', name: 'Go 1.5'
+
+    // Export environment variables pointing to the directory where Go was installed
+    withEnv(["GOROOT=${root}", "PATH+GO=${root}/bin"]) {
+        sh 'go version'	
+	
     }
     environment {
         GO114MODULE = 'on'
